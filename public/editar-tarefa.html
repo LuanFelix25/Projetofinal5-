@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Tarefa - SGT</title>
+    <link rel="stylesheet" href="css/estiloGlobais.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+             <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html" class="active">Minhas Tarefas</a></li>
+                    <li><a href="criar-tarefa.html">Criar Tarefa</a></li>
+                    <li><a href="#" id="logout-btn">Sair</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Editar Tarefa</h1>
+            </header>
+
+            <section class="task-details-card">
+                <form id="editTaskForm" novalidate>
+                    <div class="form-group">
+                        <label for="titulo">Título da Tarefa</label>
+                        <input type="text" id="titulo" class="form-control" required minlength="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <textarea id="descricao" class="form-control" rows="5" minlength="3"></textarea>
+                    </div>
+                     <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" class="form-control">
+                            <option value="pendente">Pendente</option>
+                            <option value="em_andamento">Em Andamento</option>
+                            <option value="concluida">Concluída</option>
+                        </select>
+                    </div>
+                    <div class="task-actions" style="justify-content: space-between;">
+                        <div>
+                             <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                             <a href="dashboard.html" class="btn btn-secondary">Cancelar</a>
+                        </div>
+                        <button type="button" id="delete-btn" class="btn btn-danger">Excluir Tarefa</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

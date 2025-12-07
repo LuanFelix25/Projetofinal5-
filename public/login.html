@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Sistema de Gerenciamento de Tarefas</title>
+  <link rel="stylesheet" href="css/estiloGlobais.css">
+</head>
+<body>
+  <div class="auth-container">
+    <header class="auth-header">
+      <h1>Sistema de Gerenciamento de Tarefas</h1>
+    </header>
+    <main>
+      <div class="auth-card">
+        <h2>Bem-vindo de volta!</h2>
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" class="form-control" placeholder="seu@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="senha">Senha</label>
+            <input id="senha" name="senha" type="password" class="form-control" placeholder="Sua senha" required>
+          </div>
+          <div class="task-actions">
+            <button type="submit" class="btn btn-primary">Entrar</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Voltar</button>
+          </div>
+        </form>
+        <div class="auth-footer-link">
+          <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <p>&copy; 2025 Projeto Acadêmico</p>
+    </footer>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

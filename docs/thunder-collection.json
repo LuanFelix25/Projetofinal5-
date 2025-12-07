@@ -1,0 +1,165 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "API Gerenciamento Tarefas",
+  "dateExported": "2025-12-05",
+  "version": "1.0",
+  "folders": [
+    {
+      "name": "Auth",
+      "requests": [
+        {
+          "name": "Registrar Usuário",
+          "method": "POST",
+          "url": "{{BASE_URL}}/auth/register",
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "type": "json",
+            "raw": "{\n  \"nome\": \"João Silva\",\n  \"email\": \"joao@email.com\",\n  \"senha\": \"123456\"\n}"
+          }
+        },
+        {
+          "name": "Login",
+          "method": "POST",
+          "url": "{{BASE_URL}}/auth/login",
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "type": "json",
+            "raw": "{\n  \"email\": \"joao@email.com\",\n  \"senha\": \"123456\"\n}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Usuários",
+      "requests": [
+        {
+          "name": "Listar Usuários",
+          "method": "GET",
+          "url": "{{BASE_URL}}/usuarios"
+        }
+      ]
+    },
+    {
+      "name": "Tarefas",
+      "requests": [
+        {
+          "name": "Criar Tarefa",
+          "method": "POST",
+          "url": "{{BASE_URL}}/tarefas",
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer {{TOKEN}}"
+            }
+          ],
+          "body": {
+            "type": "json",
+            "raw": "{\n  \"titulo\": \"Estudar Node.js\",\n  \"descricao\": \"Aprender Express e MongoDB\",\n  \"status\": \"pendente\"\n}"
+          }
+        },
+        {
+          "name": "Listar Tarefas",
+          "method": "GET",
+          "url": "{{BASE_URL}}/tarefas",
+          "headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{TOKEN}}"
+            }
+          ]
+        },
+        {
+          "name": "Buscar Tarefa por ID",
+          "method": "GET",
+          "url": "{{BASE_URL}}/tarefas/{{TAREFA_ID}}",
+          "headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{TOKEN}}"
+            }
+          ]
+        },
+        {
+          "name": "Atualizar Tarefa",
+          "method": "PUT",
+          "url": "{{BASE_URL}}/tarefas/{{TAREFA_ID}}",
+          "headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer {{TOKEN}}"
+            }
+          ],
+          "body": {
+            "type": "json",
+            "raw": "{\n  \"titulo\": \"Estudar Node.js - Atualizado\",\n  \"descricao\": \"Já aprendi Express e MongoDB!\",\n  \"status\": \"concluida\"\n}"
+          }
+        },
+        {
+          "name": "Excluir Tarefa",
+          "method": "DELETE",
+          "url": "{{BASE_URL}}/tarefas/{{TAREFA_ID}}",
+          "headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{TOKEN}}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "environments": [
+    {
+      "name": "Local",
+      "variables": [
+        {
+          "name": "BASE_URL",
+          "value": "http://localhost:5000"
+        },
+        {
+          "name": "TOKEN",
+          "value": "cole_seu_token_aqui"
+        },
+        {
+          "name": "TAREFA_ID",
+          "value": "cole_id_da_tarefa_aqui"
+        }
+      ]
+    },
+    {
+      "name": "Render",
+      "variables": [
+        {
+          "name": "BASE_URL",
+          "value": "https://sua-api.onrender.com"
+        },
+        {
+          "name": "TOKEN",
+          "value": "cole_seu_token_aqui"
+        },
+        {
+          "name": "TAREFA_ID",
+          "value": "cole_id_da_tarefa_aqui"
+        }
+      ]
+    }
+  ]
+}

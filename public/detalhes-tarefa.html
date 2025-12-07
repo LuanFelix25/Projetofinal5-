@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Tarefa - SGT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estiloGlobais.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div>
+                <header class="sidebar-header">
+                    <h2>Dashboard</h2>
+                </header>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="dashboard.html" class="active">Minhas Tarefas</a></li>
+                        <li><a href="criar-tarefa.html">Criar Tarefa</a></li>
+                        <li><a href="#" onclick="alert('Configurações em desenvolvimento')">Configurações</a></li>
+                        <li><a href="login.html" onclick="alert('Logout realizado com sucesso!')">Sair</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <footer class="sidebar-footer">
+                <p>&copy; 2025 Projeto Acadêmico</p>
+            </footer>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <header class="main-header">
+                 <button class="mobile-menu-button" onclick="alert('Menu mobile - funcionalidade em desenvolvimento')">&#9776;</button>
+                <h1>Detalhes da Tarefa</h1>
+                <a href="dashboard.html#voltar" class="btn btn-secondary" style="width: auto;">Voltar para a Lista</a>
+            </header>
+
+            <section class="task-details-card">
+                <h2>Revisar proposta do cliente</h2>
+                <hr>
+                <div class="task-detail-item">
+                    <div class="label">Status</div>
+                    <div class="value">Pendente</div>
+                </div>
+                 <div class="task-detail-item">
+                    <div class="label">Criada em</div>
+                    <div class="value">24 de Agosto de 2025</div>
+                </div>
+                 <div class="task-detail-item">
+                    <div class="label">Descrição</div>
+                    <div class="value">
+                        Verificar os valores e o escopo do projeto antes de enviar para o cliente. Focar na cláusula 5.3 sobre prazos de entrega. É crucial garantir que todos os itens solicitados na última reunião estejam contemplados no documento final.
+                    </div>
+                </div>
+
+                <div class="task-actions">
+                    <a href="editar-tarefa.html" class="btn btn-secondary">Editar Tarefa</a>
+                    <a href="dashboard.html?action=deleted#deleted" class="btn btn-danger">Excluir Tarefa</a>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

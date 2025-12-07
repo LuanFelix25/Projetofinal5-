@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sistema de Gerenciamento de Tarefas</title>
+  <link rel="stylesheet" href="css/estiloGlobais.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="menu" class="index-menu">
+    <div class="logo">SGT</div>
+    <h1>Sistema de Gerenciamento de Tarefas</h1>
+    <div class="desc">
+      Bem-vindo ao seu gerenciador de tarefas pessoal. Organize seu dia e aumente sua produtividade.
+    </div>
+    <ul>
+      <li><a onclick="showPage('login')" class="btn btn-primary">Acessar Minha Conta</a></li>
+      <li><a onclick="showPage('cadastro')" class="btn btn-secondary">Criar Nova Conta</a></li>
+    </ul>
+    <footer class="site-footer">
+      <p>&copy; 2025 Projeto Acadêmico</p>
+    </footer>
+  </div>
+
+  <main id="app"></main>
+
+  <div id="toast-container"></div>
+
+  <template id="login">
+    <div class="auth-container">
+      <div class="auth-card">
+        <h2>Bem-vindo de volta!</h2>
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" class="form-control" placeholder="usuario@exemplo.com" required>
+          </div>
+          <div class="form-group">
+            <label for="senha">Senha</label>
+            <input id="senha" type="password" name="senha" class="form-control" placeholder="Sua senha" required>
+          </div>
+          <div class="task-actions">
+            <button type="submit" class="btn btn-primary">Entrar</button>
+            <button type="button" onclick="showMenu()" class="btn btn-secondary">Voltar ao Menu</button>
+          </div>
+        </form>
+        <div class="auth-footer-link"><p>Não tem uma conta? <a onclick="showPage('cadastro')">Cadastre-se</a></p></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="cadastro">
+    <div class="auth-container">
+      <div class="auth-card">
+        <h2>Criar sua conta</h2>
+        <form id="cadastroForm" novalidate>
+          <div class="form-group"><label for="nome">Nome completo</label><input type="text" id="nome" name="nome" class="form-control" placeholder="Nome e Sobrenome" required></div>
+          <div class="form-group"><label for="email-cadastro">Email</label><input type="email" id="email-cadastro" name="email" class="form-control" placeholder="seu@email.com" required></div>
+          <div class="form-group"><label for="senha-cadastro">Senha</label><input type="password" id="senha-cadastro" name="senha" class="form-control" minlength="8" placeholder="Mínimo de 8 caracteres" required></div>
+          <div class="form-group"><label for="confirmar">Confirmar senha</label><input type="password" id="confirmar" name="confirmar" class="form-control" minlength="8" required></div>
+          <div class="task-actions">
+            <button type="submit" class="btn btn-primary">Criar conta</button>
+            <button type="button" onclick="showMenu()" class="btn btn-secondary">Voltar ao Menu</button>
+          </div>
+        </form>
+        <div class="auth-footer-link"><p>Já tem uma conta? <a onclick="showPage('login')">Fazer login</a></p></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="dashboard">
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div>
+            <header class="sidebar-header"><h2>Dashboard</h2></header>
+            <nav class="sidebar-nav">
+              <ul>
+                <li><a onclick="showPage('dashboard')" class="active">📋 Minhas Tarefas</a></li>
+                <li><a onclick="showPage('criar-tarefa')">➕ Criar Tarefa</a></li>
+                <li><a onclick="alert('Configurações em desenvolvimento')">⚙️ Configurações</a></li>
+                <li><a onclick="logout()">🚪 Sair</a></li>
+              </ul>
+            </nav>
+        </div>
+        <footer class="sidebar-footer"><p>&copy; 2025 Projeto Acadêmico</p></footer>
+      </aside>
+      <main class="main-content">
+        <header class="main-header">
+          <h1>📋 Minhas Tarefas</h1>
+          <a onclick="showPage('criar-tarefa')" class="btn btn-primary" style="width: auto;">➕ Nova Tarefa</a>
+        </header>
+        <section class="tasks-grid" id="tasksGrid">
+          </section>
+      </main>
+    </div>
+  </template>
+
+  <template id="criar-tarefa">
+    <div class="app-layout">
+      <aside class="sidebar">
+          <div>
+              <header class="sidebar-header"><h2>Menu</h2></header>
+              <nav class="sidebar-nav">
+                  <ul>
+                      <li><a onclick="showPage('dashboard')">📋 Minhas Tarefas</a></li>
+                      <li><a onclick="showPage('criar-tarefa')" class="active">➕ Criar Tarefa</a></li>
+                      <li><a onclick="logout()">🚪 Sair</a></li>
+                  </ul>
+              </nav>
+          </div>
+          <footer class="sidebar-footer"><p>&copy; 2025 Projeto Acadêmico</p></footer>
+      </aside>
+      <main class="main-content">
+        <header class="main-header"><h1>Criar Nova Tarefa</h1></header>
+        <section class="task-details-card">
+          <form id="criarTarefaForm" novalidate>
+            <div class="form-group"><label for="titulo-criar">Título</label><input type="text" id="titulo-criar" name="titulo" class="form-control" required></div>
+            <div class="form-group"><label for="descricao-criar">Descrição</label><textarea id="descricao-criar" name="descricao" class="form-control" rows="4"></textarea></div>
+            <div class="form-group"><label for="status-criar">Status</label>
+              <select id="status-criar" name="status" class="form-control">
+                <option value="pendente" selected>Pendente</option>
+                <option value="em_andamento">Em Andamento</option>
+                <option value="concluida">Concluída</option>
+              </select>
+            </div>
+            <div class="task-actions">
+              <button type="submit" class="btn btn-primary">Salvar Tarefa</button>
+              <a onclick="showPage('dashboard')" class="btn btn-secondary">Cancelar</a>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  </template>
+
+  <template id="editar-tarefa">
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div>
+                <header class="sidebar-header"><h2>Menu</h2></header>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a onclick="showPage('dashboard')">📋 Minhas Tarefas</a></li>
+                        <li><a onclick="showPage('criar-tarefa')">➕ Criar Tarefa</a></li>
+                        <li><a onclick="logout()">🚪 Sair</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <footer class="sidebar-footer"><p>&copy; 2025 Projeto Acadêmico</p></footer>
+        </aside>
+      <main class="main-content">
+        <header class="main-header"><h1>Editar Tarefa</h1></header>
+        <section class="task-details-card">
+          <form id="editarTarefaForm" novalidate>
+            <div class="form-group"><label for="titulo-editar">Título</label><input type="text" id="titulo-editar" name="titulo" class="form-control" required></div>
+            <div class="form-group"><label for="descricao-editar">Descrição</label><textarea id="descricao-editar" name="descricao" class="form-control" rows="4"></textarea></div>
+            <div class="form-group"><label for="status-editar">Status</label>
+              <select id="status-editar" name="status" class="form-control">
+                <option value="pendente">Pendente</option>
+                <option value="em_andamento">Em Andamento</option>
+                <option value="concluida">Concluída</option>
+              </select>
+            </div>
+            <div class="task-actions" style="justify-content: space-between;">
+              <div style="display: flex; gap: 1rem;">
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                <a onclick="showPage('dashboard')" class="btn btn-secondary">Cancelar</a>
+              </div>
+              <button type="button" id="btn-delete" class="btn btn-danger">Excluir</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  </template>
+  
+  <template id="detalhes-tarefa">
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div>
+                <header class="sidebar-header"><h2>Menu</h2></header>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a onclick="showPage('dashboard')">📋 Minhas Tarefas</a></li>
+                        <li><a onclick="logout()">🚪 Sair</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <footer class="sidebar-footer"><p>&copy; 2025 Projeto Acadêmico</p></footer>
+        </aside>
+      <main class="main-content">
+        <header class="main-header">
+            <h1>Detalhes da Tarefa</h1>
+        </header>
+        <section id="detalhes-container" class="task-details-card">
+            </section>
+      </main>
+    </div>
+  </template>
+
+  <template id="confirmar-exclusao">
+    <div class="confirmacao-modal">
+      <div class="modal-content">
+        <div class="warning-icon">⚠️</div>
+        <h2>Confirmar Exclusão</h2>
+        <p id="confirm-delete-message">Tem certeza que deseja excluir esta tarefa?</p>
+        <div class="modal-actions">
+          <button id="confirm-delete-btn" class="btn btn-danger">Sim, Excluir</button>
+          <a onclick="showPage('editar-tarefa')" class="btn btn-secondary">Cancelar</a>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

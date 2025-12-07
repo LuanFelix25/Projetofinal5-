@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: api-tarefas
+    env: node
+    plan: free
+    rootDirectory: src
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production

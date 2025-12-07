@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Exclusão - SGT</title>
+    <link rel="stylesheet" href="css/estiloGlobais.css">
+</head>
+<body>
+    <div class="confirmacao-modal" style="display: flex;">
+        <div class="modal-content">
+            <div class="warning-icon">⚠️</div>
+            <h2>Confirmar Exclusão</h2>
+            <p>Tem certeza que deseja excluir a tarefa <strong id="task-title-confirm"></strong>?</p>
+            <p><strong>Esta ação não pode ser desfeita!</strong></p>
+            
+            <div class="modal-actions">
+                <button id="confirm-delete-btn" class="btn btn-danger">Sim, Excluir</button>
+                <a href="dashboard.html" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

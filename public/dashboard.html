@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SGT</title>
+    <link rel="stylesheet" href="css/estiloGlobais.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div>
+                <header class="sidebar-header">
+                    <h2>Dashboard</h2>
+                </header>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="dashboard.html" class="active">📋 Minhas Tarefas</a></li>
+                        <li><a href="criar-tarefa.html">➕ Criar Tarefa</a></li>
+                        <li><a href="#" id="configuracoes-btn">⚙️ Configurações</a></li>
+                        <li><a href="#" id="logout-btn">🚪 Sair</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <footer class="sidebar-footer">
+                <p>&copy; 2025 Projeto Acadêmico</p>
+            </footer>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1>📋 Minhas Tarefas</h1>
+                <a href="criar-tarefa.html" class="btn btn-primary" style="width: auto;">➕ Nova Tarefa</a>
+            </header>
+
+            <div class="task-counter">
+                <span id="task-count" class="counter-number">0</span>
+                <span>Tarefas Ativas</span>
+            </div>
+
+            <section class="tasks-grid" id="tasksGrid">
+                </section>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
