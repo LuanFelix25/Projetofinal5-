@@ -2,12 +2,16 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
+
+// Servir arquivos estáticos da pasta public
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Conexão com MongoDB
 mongoose.connect(process.env.MONGODB_URI)
@@ -23,8 +27,8 @@ app.use('/auth', authRoutes);
 app.use('/usuarios', usuariosRoutes);
 app.use('/tarefas', tarefasRoutes);
 
-// Rota raiz
-app.get('/', (req, res) => {
+// Rota da API (informações JSON)
+app.get('/api', (req, res) => {
   res.json({
     message: 'API de Gerenciamento de Tarefas',
     version: '1.0.0',
@@ -45,6 +49,11 @@ app.get('/', (req, res) => {
       }
     }
   });
+});
+
+// Rota raiz serve o index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 // Porta
